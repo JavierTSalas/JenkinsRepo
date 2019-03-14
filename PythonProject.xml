@@ -28,7 +28,7 @@
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.tasks.Shell>
-      <command>nosetests --with-xunit --all-modules --traverse-namespace --with-coverage --cover-package=project1 --cover-inclusive ;  python -m coverage xml --include=project1*  ;    pylint -f parseable -d I0011,R0801 project1 | tee pylint.out</command>
+      <command>nosetests --with-xunit --all-modules --traverse-namespace --with-coverage --cover-package=JenkinsRepo --cover-inclusive ;  python -m coverage xml --include=JenkinsRepo*  ;    pylint -f parseable -d I0011,R0801 JenkinsRepo | tee pylint.out</command>
     </hudson.tasks.Shell>
   </builders>
   <publishers>

@@ -9,16 +9,19 @@ def login():
      version = server.get_version()
      print('Hello %s from Jenkins %s' % (user['fullName'], version))
 
+
 def installPlugins(plugins):
     '''
     Installs the plugins given in the list
     Returns bool if restart is required
     '''
+    plugins_list=[key[0] for key in (server.get_plugins()).keys()]
     restart = False
     for plugin in plugins:
-        restart = restart or server.install_plugin(plugin)
+        if plugin not in plugins_list:
+            restart = restart and server.install_plugin(plugin)
+            print("Installing plugin:"+plugin)
     return restart
-
 
 
 def createNewConfig(file_path,output_path):
@@ -51,7 +54,6 @@ if __name__=="__main__":
     print("Starting JenkinsQuickStart")
     # Installs Jenkins Plugins
     plugins=['violations','git','cobertura']
-    print("Installing plugins")
     if installPlugins(plugins):
         print("Please restart Jenkins and relaunch the script")
         sys.exit(-1)

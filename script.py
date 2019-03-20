@@ -16,7 +16,7 @@ def installPlugins(plugins):
     Returns bool if restart is required
     '''
     plugins_list=[key[0] for key in (server.get_plugins()).keys()]
-    restart = False
+    restart = True
     for plugin in plugins:
         if plugin not in plugins_list:
             restart = restart and server.install_plugin(plugin)
